@@ -5,8 +5,8 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import javax.servlet.ServletContext;
 
 public class Main {
-    public static void main(String[] args) throws Exception  {
-        Helper dataBase = new Helper();
+    public static void main(String[] args) {
+        /*Helper dataBase = new Helper();
         //System.out.println(dataBase.addUser("admin","576923"));
         System.out.println(dataBase.checkUser("admin"));
         StatementService ss = new StatementService();
@@ -18,11 +18,13 @@ public class Main {
         data.addStatement(statement);
         statement.setPersonaldata(data);
         ss.saveStatement(statement);
-        System.out.println("Statement saved");
-        /*Servlet servlet = new Servlet();
+        System.out.println("Statement saved");*/
+        Index index = new Index();
+        Login login = new Login();
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context.addServlet(new ServletHolder(servlet), "/test");
+        context.addServlet(new ServletHolder(index), "/index");
+        context.addServlet(new ServletHolder(login), "/login");
 
         Server server = new Server(8080);
         server.setHandler(context);
@@ -33,6 +35,6 @@ public class Main {
         } catch (Exception ex) {
             System.out.println("ALARM");
             ex.printStackTrace();
-        }*/
+        }
     }
 }
