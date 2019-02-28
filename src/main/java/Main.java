@@ -20,11 +20,11 @@ public class Main {
         ss.saveStatement(statement);
         System.out.println("Statement saved");*/
         Index index = new Index();
-        Login login = new Login();
+        Logout logout = new Logout();
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(index), "/index");
-        context.addServlet(new ServletHolder(login), "/login");
+        context.addServlet(new ServletHolder(logout), "/logout");
 
         Server server = new Server(8080);
         server.setHandler(context);

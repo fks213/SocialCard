@@ -11,7 +11,7 @@ import java.util.List;
 public class Helper {
     private static SessionFactory dbSession;
 
-    public static SessionFactory getSessionFactory() {
+    static SessionFactory getSessionFactory() {
         if (dbSession == null) {
             Configuration conf = new Configuration().configure("/hibernate.cfg.xml");
             conf.addAnnotatedClass(Statement.class);
@@ -28,7 +28,7 @@ public class Helper {
 
     public String addUser(String login, String passwd)
     {
-        Session session = null;
+        Session session;
         if (dbSession == null) {
             dbSession = getSessionFactory();
         }
@@ -54,8 +54,8 @@ public class Helper {
         return "Success added!";
     }
 
-    public String checkUser(String login) {
-        Session session = null;
+    String checkUser(String login) {
+        Session session;
         if (dbSession == null) {
             dbSession = getSessionFactory();
         }
@@ -65,9 +65,9 @@ public class Helper {
             query.setParameter("log", login);
             List users = query.list();
             if(users.size() == 0)
-                return "No data found!";
+                return null;
             Users user = (Users) users.iterator().next();
-            return "password: " + user.getPasswd();
+            return user.getPasswd();
         }
         catch (HibernateException ex) {
             ex.printStackTrace();
